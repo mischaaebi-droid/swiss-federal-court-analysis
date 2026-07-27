@@ -17,10 +17,14 @@
 html,
 body {
     margin-left: 6px;
+    margin-right: 5px;
     padding:0px;
     width: 100%;
     overflow-x: hidden;
 }
+
+
+hr {margin-right:45px}
 
 body {
     font-family: "Roboto", Arial, sans-serif;
@@ -29,7 +33,7 @@ body {
 
 #chart {
     width: 100%;
-    margin-top: 30px;
+    
 }
 
         h1 {
@@ -37,10 +41,11 @@ body {
             font-family: "Roboto", Arial, sans-serif;
             font-weight: 700;
             margin-bottom: 5px;
+            font-size: 1.5em;
         }
 
         #chart {
-            margin-top: 30px;
+            margin-top: 13px;
         }
 .composition-label {
             font-size: 14px;
@@ -55,8 +60,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px 20px;
-    margin-top: 14px;
-    margin-bottom: 8px;
+    margin-top: 30px;
+    margin-bottom: 0px;
     font-size: 13px;
 }
 
@@ -92,8 +97,8 @@ body {
 
 
 <body>
-
-    <h1>Court decisions with only right-wing judges are much more common</h1>
+<hr>
+    <h1>Court decisions with only right-wing judges<br> are much more common</h1>
     <p>76 court-decisions with only right-wing judges, just one pure left-wing decision.</p>
 
 <div class="legend">
@@ -117,16 +122,11 @@ body {
 
 
 
-
-
-
-
-
-
     <!-- Hier kommt die Grafik hinein -->
     <div id="chart"></div>
 
-
+<span>Source: <a href="https://www.bger.ch/" target="_blank">Federal Court</a> | Data collection and analysis: Mischa Aebi</p>
+    <hr>
     <script>
 
 d3.csv("3judge_composition_counts.csv").then(data => {
