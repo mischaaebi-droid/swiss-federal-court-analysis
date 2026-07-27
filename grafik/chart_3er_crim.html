@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Decisions and success rate by political wing</title>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7">}
+</script>
+    <style>
+html,
+body {
+    margin-left: 6px;
+    margin-right: 5px;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+hr { margin-right: 45px; }
+
+body {
+    font-family: "Roboto", Arial, sans-serif;
+    max-width: 1000px;
+}
+
+h1 {
+    font-family: "Roboto", Arial, sans-serif;
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 1.5em;
+}
+
+p {
+    margin-top: 0;
+}
+
+#chart {
+    width: 100%;
+    margin-top: 22px;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    font-size: 13px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-square {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+}
+
+.legend-square.right { background: #6689A6; }
+.legend-square.center { background: #D69C4A; }
+.legend-square.left { background: #C56B63; }
+
+.value-label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.group-label,
+.column-label {
+    font-size: 13px;
+}
+
+.source {
+    font-size: 13px;
+}
+    </style>
+</head>
+<body>
+<hr>
+
+<h1>The left-wing judge-panels have the highest success rate</h1>
+<p>Three-judge criminal-law decisions by political composition of the panel.</p>
+
+<div class="legend">
+    Majority:
+    <div class="legend-item">
+        <span class="legend-square right"></span>
+        <span><b>Right: </b>FDP, SVP and Donzallaz</span>
+    </div>
+    <div class="legend-item">
+        <span class="legend-square center"></span>
+        <span><b>Center: </b>Mitte, GLP</span>
+    </div>
+    <div class="legend-item">
+        <span class="legend-square left"></span>
+        <span><b>Left: </b>SP, Grüne</span>
+    </div>
+</div>
+
+<div id="chart"></div>
+
+<p class="source">Source: <a href="https://www.bger.ch/" target="_blank">Federal Court</a> | Data collection and analysis: Mischa Aebi</p>
+<hr>
+
+<script>
+d3.csv("3er_crimelaw.csv").then(data => {
+
+    data.forEach(d => {
+        d.decisions = +d.decisions;
+        d.successrate = +d.successrate;
+    });
+
+    drawChart(data);
+});
+
+function drawChart(data) {
+
+const colors = {
+    right: "#6689A6",
+    center: "#D69C4A",
+    left: "#C56B63"
+};
+
+const width = 760;
+const height = 190;
+const rowHeight = 50;
+const top = 48;
+
+const labelX = 0;
+const decisionsX = 5;
+const decisionsWidth = 340;
+const successX = 400;
+const successWidth = 340;
+
+const svg = d3.select("#chart")
+    .append("svg")
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .style("width", "100%")
+    .style("height", "auto")
+    .style("display", "block");
+
+const decisionsScale = d3.scaleLinear()
+    .domain([0, d3.max(data, d => d.decisions)])
+    .range([0, decisionsWidth]);
+
+const successScale = d3.scaleLinear()
+    .domain([0, 40])
+    .range([0, successWidth]);
+
+svg.append("text")
+    .attr("x", decisionsX)
+    .attr("y", 18)
+    .attr("class", "column-label")
+    .text("Number of decisions");
+
+svg.append("text")
+    .attr("x", successX)
+    .attr("y", 18)
+    .attr("class", "column-label")
+    .text("Success rate");
+
+const rows = svg.selectAll(".row")
+    .data(data)
+    .join("g")
+    .attr("class", "row")
+    .attr("transform", (d, i) => `translate(0, ${top + i * rowHeight})`);
+
+
+
+rows.append("rect")
+    .attr("x", decisionsX)
+    .attr("y", -13)
+    .attr("height", 26)
+    .attr("width", d => decisionsScale(d.decisions))
+    .attr("fill", d => colors[d.group]);
+
+rows.append("text")
+    .attr("x", 10)
+    .attr("y", 5)
+    .attr("class", "value-label")
+    .text(d => d.decisions);
+
+rows.append("rect")
+    .attr("x", successX)
+    .attr("y", -13)
+    .attr("height", 26)
+    .attr("width", d => successScale(d.successrate))
+    .attr("fill", d => colors[d.group]);
+
+rows.append("text")
+    .attr("x", 410)
+    .attr("y", 5)
+    .attr("class", "value-label")
+    .text(d => `${d.successrate.toFixed(1)}%`);
+}
+</script>
+</body>
+</html>
