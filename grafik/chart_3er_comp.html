@@ -93,13 +93,13 @@ body {
 
 <body>
 
-    <h1>76 court-decisions with only right-wing judges, just one pure left-wing decision
-    <p>All-right-wing panels issue rulings far more often than all-left-wing panels.</p>
+    <h1>Court decisions with only right-wing judges are much more common</h1>
+    <p>76 court-decisions with only right-wing judges, just one pure left-wing decision.</p>
 
 <div class="legend">
     <div class="legend-item">
         <span class="legend-square right"></span>
-        <span><b>Right: </b>FDP, SVP and Donzallaz</span>
+        <span><b>Right: </b>FDP, SVP and Mr. Donzallaz</span>
     </div>
 
     <div class="legend-item">
@@ -109,7 +109,7 @@ body {
 
     <div class="legend-item">
         <span class="legend-square left"></span>
-        <span><b>Left: </b>SP und Grüne</span>
+        <span><b>Left: </b>SP and Grüne</span>
     </div>
 </div>
 
@@ -154,7 +154,7 @@ function drawChart(data) {
     );
 
     const width = 580;
-    const rowHeight = 55;
+    const rowHeight = 33;
     const height = data.length * rowHeight + 60;
 
     const svg = d3
@@ -182,7 +182,7 @@ function drawChart(data) {
             0,
             d3.max(data, d => d.number_decisions)
         ])
-        .range([0, 360]);
+        .range([0, 380]);
 
 
     // Eine Gruppe pro Zusammensetzung
@@ -200,17 +200,17 @@ function drawChart(data) {
 
     // Spaltenüberschriften
 svg.append("text")
-    .attr("x", 2)
+    .attr("x", 1)
     .attr("y", 18)
     .attr("font-size", "13px")
-    .attr("font-weight", "700")
+    .attr("font-weight", "400")
     .text("Judges by party ");
 
 svg.append("text")
-    .attr("x", 178)
+    .attr("x", 128)
     .attr("y", 18)
     .attr("font-size", "13px")
-    .attr("font-weight", "700")
+    .attr("font-weight", "400")
     .text("Number of decisions");
 
 
@@ -256,7 +256,7 @@ svg.append("text")
     .data(judges)
     .join("g")
     .attr("class", "judge")
-    .attr("transform", (judge, i) => `translate(${i * 34}, -14)`);
+    .attr("transform", (judge, i) => `translate(${i * 42}, -14)`);
 
 // farbiges Quadrat
 judgeGroups
@@ -289,7 +289,7 @@ judgeGroups
     // Balken
     rows
         .append("rect")
-        .attr("x", 175)
+        .attr("x", 125)
         .attr("y", -14)
         .attr("height", 26)
         .attr(
@@ -303,7 +303,7 @@ judgeGroups
     rows
         .append("text")
         .attr(
-            "x", 183
+            "x", 130
         )
         .attr("y", 5)
         .attr("class", "number-label")
