@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Composition of five-judge panels</title>
+
+    <!-- D3 -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+    <!-- SheetJS zum Einlesen von Excel-Dateien -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+    <style>
+html,
+body {
+    margin-left: 6px;
+    padding:0px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Roboto", Arial, sans-serif;
+    max-width: 1000px;
+}
+
+#chart {
+    width: 100%;
+    margin-top: 30px;
+}
+
+        h1 {
+
+            font-family: "Roboto", Arial, sans-serif;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        #chart {
+            margin-top: 30px;
+        }
+.composition-label {
+            font-size: 14px;
+        }
+
+        .number-label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin-top: 14px;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-square {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+}
+
+.legend-square.right {
+    background: #6689A6;
+}
+
+.legend-square.center {
+    background: #D69C4A;
+}
+
+.legend-square.left {
+    background: #C56B63;
+}
+
+
+
+
+    </style>
+</head>
+
+
+<body>
+
+    <h1>76 court-decisions with only right-wing judges, just one pure left-wing decision
+    <p>All-right-wing panels issue rulings far more often than all-left-wing panels.</p>
+
+<div class="legend">
+    <div class="legend-item">
+        <span class="legend-square right"></span>
+        <span><b>Right: </b>FDP, SVP and Donzallaz</span>
+    </div>
+
+    <div class="legend-item">
+        <span class="legend-square center"></span>
+        <span><b>Center: </b> Mitte and GLP</span>
+    </div>
+
+    <div class="legend-item">
+        <span class="legend-square left"></span>
+        <span><b>Left: </b>SP und Grüne</span>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Hier kommt die Grafik hinein -->
+    <div id="chart"></div>
+
+
+    <script>
+
+d3.csv("3judge_composition_counts.csv").then(data => {
+
+    data.forEach(d => {
+        d.right = +d.right;
+        d.center = +d.center;
+        d.left = +d.left;
+        d.number_decisions = +d.number_decisions;
+    });
+
+    drawChart(data);
+});
+
+
+function drawChart(data) {
+
+    // nach Anzahl Urteile sortieren
+    data.sort(
+        (a, b) =>
+            d3.descending(
+                a.number_decisions,
+                b.number_decisions
+            )
+    );
+
+    const width = 580;
+    const rowHeight = 55;
+    const height = data.length * rowHeight + 60;
+
+    const svg = d3
+    .select("#chart")
+    .append("svg")
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .style("width", "100%")
+    .style("height", "auto")
+    .style("display", "block");
+
+
+    // Farben
+    const colors = {
+     right: "#6689A6",   
+    center: "#D69C4A",  
+    left: "#C56B63"     
+    };
+
+
+    // Skala für Balken
+    const barScale = d3
+        .scaleLinear()
+        .domain([
+            0,
+            d3.max(data, d => d.number_decisions)
+        ])
+        .range([0, 360]);
+
+
+    // Eine Gruppe pro Zusammensetzung
+    const rows = svg
+        .selectAll(".row")
+        .data(data)
+        .join("g")
+        .attr("class", "row")
+        .attr(
+            "transform",
+            (d, i) =>
+                `translate(1, ${40 + i * rowHeight})`
+        );
+
+
+    // Spaltenüberschriften
+svg.append("text")
+    .attr("x", 2)
+    .attr("y", 18)
+    .attr("font-size", "13px")
+    .attr("font-weight", "700")
+    .text("Judges by party ");
+
+svg.append("text")
+    .attr("x", 178)
+    .attr("y", 18)
+    .attr("font-size", "13px")
+    .attr("font-weight", "700")
+    .text("Number of decisions");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Für jede Zeile fünf Richter erzeugen
+    rows.each(function(d) {
+
+        const judges = [];
+
+        for (let i = 0; i < d.right; i++) {
+            judges.push({ group: "right" });
+        }
+
+        for (let i = 0; i < d.center; i++) {
+            judges.push({ group: "center" });
+        }
+
+        for (let i = 0; i < d.left; i++) {
+            judges.push({ group: "left" });
+        }
+
+
+       const judgeGroups = d3.select(this)
+    .selectAll(".judge")
+    .data(judges)
+    .join("g")
+    .attr("class", "judge")
+    .attr("transform", (judge, i) => `translate(${i * 34}, -14)`);
+
+// farbiges Quadrat
+judgeGroups
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", 26)
+    .attr("height", 26)
+    
+    .attr("fill", judge => colors[judge.group]);
+
+
+// Head
+judgeGroups
+    .append("circle")
+    .attr("cx", 13)
+    .attr("cy", 7)
+    .attr("r", 4)
+    .attr("fill", "white");
+
+// Body
+judgeGroups
+    .append("path")
+    .attr("d", "M13,12 L5,22 L20,22 Z")
+    .attr("fill", "white");
+
+    });
+
+
+    // Balken
+    rows
+        .append("rect")
+        .attr("x", 175)
+        .attr("y", -14)
+        .attr("height", 26)
+        .attr(
+            "width",
+            d => barScale(d.number_decisions)
+        )
+        .attr("fill", "#cccccc");
+
+
+    // Anzahl Urteile
+    rows
+        .append("text")
+        .attr(
+            "x", 183
+        )
+        .attr("y", 5)
+        .attr("class", "number-label")
+        .text(
+            d => d.number_decisions
+        );
+
+}
+
+</script>
+
+</body>
+
+</html>
