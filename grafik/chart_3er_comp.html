@@ -169,11 +169,11 @@ p{font-size:15px}
     /* Legende */
     .legend {
         margin-top: 15px;
-        margin-bottom: 5px;
+        margin-bottom: 15px;
 
         gap: 6px 12px;
 
-        font-size: 11px;
+        font-size: 12px;
         line-height: 1.25;
     }
 
@@ -228,12 +228,12 @@ p{font-size:15px}
 <body>
 <hr>
     <h1>Left-wing judges rarely hold a majority on judicial panels</h1>
-    <p>Most of the 1371 analyzed Federal Supreme Court decisions with 3-judge-panels are made with a right-wing-majority (FDP and SVP).</p>
+    <p>Example: In 640 of the 1,371 cases, the ruling was handed down by a panel with a right-wing majority. In 76 cases, the panel consisted entirely of right-wing judges.</p>
 
 <div class="legend">
     <div class="legend-item">
         <span class="legend-square right"></span>
-        <span><b>Right: </b>FDP, SVP and Donzallaz</span>
+        <span><b>Right: </b>FDP, SVP, Donzallaz</span>
     </div>
 
     <div class="legend-item">
@@ -272,16 +272,16 @@ d3.csv("3judge_composition_counts.csv").then(data => {
 
 function drawChart(data) {
 const isMobile = window.innerWidth <= 600;
-    const rowHeight = isMobile ? 43 : 33;
+    const rowHeight = isMobile ? 60 : 33;
 
     
-     const judgeStartX = isMobile ? 200 : 147;
-    const judgeGap    = isMobile ? 45 : 42;
+     const judgeStartX = isMobile ? 215 : 147;
+    const judgeGap    = isMobile ? 65 : 42;
 
-    const barStartX   = isMobile ? 350 : 270;
-    const barWidth    = isMobile ? 220 : 270;
-    const braceX = isMobile ? 190 : 138;
-    const majorityX   = isMobile ? 162 : 110;
+    const barStartX   = isMobile ? 403 : 270;
+    const barWidth    = isMobile ? 150 : 270;
+    const braceX = isMobile ? 208 : 138;
+    const majorityX   = isMobile ? 175 : 110;
     const majorityY1 = 40 + 1 * rowHeight - 3;
     const majorityY2 = 40 + 4 * rowHeight - 3;
     const majorityY3 = 40 + 7 * rowHeight - 3;
@@ -311,25 +311,6 @@ data.sort((a, b) => {
 console.log(
     data.map(d => `${d.right}-${d.center}-${d.left}`)
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -382,21 +363,21 @@ const colors = {
 
     // Spaltenüberschriften
 svg.append("text")
-    .attr("x",  isMobile ? 200: 151)
+    .attr("x",  isMobile ? 220: 151)
     .attr("y", 14)
-    .attr("font-size", isMobile ? "18px" : "12px")
+    .attr("font-size", isMobile ? "19px" : "12px")
     .attr("font-weight", "600")
     .text("Judge-Panel ");
 
 svg.append("text")
-    .attr("x", isMobile ? 348: 270)
+    .attr("x", isMobile ? 400: 270)
     .attr("y", 14)
     
-    .attr("font-size", isMobile ? "18px" : "12px")
+    .attr("font-size", isMobile ? "19px" : "12px")
     .attr("font-weight", "600")
-    .text("Number of decisions");
+    .text("decisions");
 
-const separatorOffset = isMobile ? 4 : 0;
+const separatorOffset = isMobile ? 10 : 0;
 
 const separatorYs = [
     39 + 2.5 * rowHeight + separatorOffset,
@@ -425,13 +406,13 @@ svg.selectAll(".separator-line")
 const text = svg.append("text")
     .attr("x", 10)
     .attr("y", majorityY1)
-    .attr("font-size", isMobile ? "18px" : "12px")
+    .attr("font-size", isMobile ? "19px" : "12px")
        .attr("text-anchor", "end")
     .attr("font-weight", 600)
     .attr("fill", colors.right);
 
 text.append("tspan")
-    .attr("x", majorityX)
+    .attr("x", majorityX )
     .text("Right-wing majority");
 
 text.append("tspan")
@@ -443,7 +424,7 @@ text.append("tspan")
 const text2 = svg.append("text")
     .attr("x", 10)
     .attr("y", majorityY2)
-    .attr("font-size", isMobile ? "18px" : "12px")
+    .attr("font-size", isMobile ? "19px" : "12px")
     .attr("font-weight", 600)
      .attr("text-anchor", "end")
     .attr("fill", colors.left);
@@ -462,7 +443,7 @@ const text3 = svg.append("text")
     .attr("x", 10)
     .attr("y", majorityY3)
     .attr("text-anchor", "end")
-   .attr("font-size", isMobile ? "18px" : "12px")
+   .attr("font-size", isMobile ? "19px" : "12px")
     .attr("font-weight", 600)
     .attr("fill", colors.center);
 
@@ -500,36 +481,36 @@ function addBrace(yTop, yBottom, color) {
 }
 
 
-// Erste drei Zeilen
+// Zeilen 4–6
 addBrace(
-    40 - 14,
-    40 + 2 * rowHeight + 12,
+    40 - (isMobile ? 15 : 14),
+    40 + 2 * rowHeight + (isMobile ? 29 : 12),
     colors.right
 );
 
-// Zeilen 4–6
 addBrace(
-    40 + 3 * rowHeight - 14,
-    40 + 5 * rowHeight + 12,
+    40 + 3 * rowHeight - (isMobile ? 15 : 14),
+    40 + 5 * rowHeight + (isMobile ? 29 : 12),
     colors.left
 );
 
-// Zeilen 7–9
 addBrace(
-    40 + 6 * rowHeight - 14,
-    40 + 8 * rowHeight + 12,
+    40 + 6 * rowHeight - (isMobile ? 15 : 14),
+    40 + 8 * rowHeight + (isMobile ? 31 : 12),
     colors.center
 );
 
 // Letzte Zeile: keine Mehrheit
 
-const noMajorityY = 40 + 9 * rowHeight;
+const noMajorityY = 50 + 9 * rowHeight;
 const xBrace = braceX;
+
+const braceHeight = isMobile ? 20 : 13;
 
 svg.append("path")
     .attr("d", `
-        M ${xBrace} ${noMajorityY - 13}
-        C ${xBrace - 7} ${noMajorityY - 13},
+        M ${xBrace} ${noMajorityY - braceHeight}
+        C ${xBrace - 7} ${noMajorityY - braceHeight},
           ${xBrace - 7} ${noMajorityY - 7},
           ${xBrace - 7} ${noMajorityY - 4}
 
@@ -542,8 +523,8 @@ svg.append("path")
           ${xBrace - 7} ${noMajorityY + 4}
 
         C ${xBrace - 7} ${noMajorityY + 7},
-          ${xBrace - 7} ${noMajorityY + 13},
-          ${xBrace} ${noMajorityY + 13}
+          ${xBrace - 7} ${noMajorityY + braceHeight},
+          ${xBrace} ${noMajorityY + braceHeight}
     `)
     .attr("fill", "none")
     .attr("stroke", "#777")
@@ -554,7 +535,7 @@ svg.append("path")
     .attr("x", 10)
     .attr("y", noMajorityY +4)
     .attr("text-anchor", "end")
-    .attr("font-size", isMobile ? "18px" : "12px")
+    .attr("font-size", isMobile ? "19px" : "12px")
     .attr("font-weight", 600)
     .attr("fill", "#777");
 
@@ -600,7 +581,7 @@ const judgeGroups = d3.select(this)
     .attr(
     "transform",
     (judge, i) =>
-        `translate(${judgeStartX + i * judgeGap}, -14) scale(${isMobile ? 1.3 : 1})`
+        `translate(${judgeStartX + i * judgeGap}, -14) scale(${isMobile ? 1.8 : 1})`
 );
 
 
@@ -645,8 +626,8 @@ judgeGroups
     rows
     .append("rect")
     .attr("x", barStartX)
-    .attr("y", isMobile ? -14 : -14)
-    .attr("height", isMobile ? 34 : 26)
+    .attr("y", isMobile ? -11 : -14)
+    .attr("height", isMobile ? 43 : 26)
     .attr("width", d => barScale(d.number_decisions))
     .attr("fill", "#cccccc");
 
@@ -656,9 +637,9 @@ judgeGroups
 rows
     .append("text")
     .attr("x", barStartX + 5)
-    .attr("y", isMobile ? 11 : 5)
-    .attr("class", "number-label")
-    .style("font-size", isMobile ? "18px" : "13px")
+    .attr("y", isMobile ? 16 : 5)
+   
+    .style("font-size", isMobile ? "19px" : "13px")
     .text(d => d.number_decisions);
 
 }
