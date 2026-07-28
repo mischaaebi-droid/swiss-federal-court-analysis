@@ -82,8 +82,8 @@ p {
 <body>
 <hr>
 
-<h1>The left-wing judge-panels have the highest success rate</h1>
-<p>Three-judge criminal-law decisions by political composition of the panel.</p>
+<h1>Right-wing judges overturn administrative decisions more often</h1>
+<p>Administrative law mostly deals with disputes between citizens and authorities. Right-wing federal judges overturn government decisions most often.</p>
 
 <div class="legend">
     Majority:
@@ -107,7 +107,7 @@ p {
 <hr>
 
 <script>
-d3.csv("3er_crimelaw.csv").then(data => {
+d3.csv("3er_publaw.csv").then(data => {
 
     data.forEach(d => {
         d.decisions = +d.decisions;

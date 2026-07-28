@@ -41,7 +41,7 @@ body {
             font-family: "Roboto", Arial, sans-serif;
             font-weight: 700;
             margin-bottom: 5px;
-            font-size: 1.5em;
+            font-size: 1.1em;
         }
 
         #chart {
@@ -90,6 +90,44 @@ body {
 }
 
 
+@media (max-width: 600px) {
+
+    body {
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+
+    h1 {
+        font-size: 1.25em;
+        line-height: 1.15;
+    }
+
+    p {
+        font-size: 13px;
+        line-height: 1.35;
+    }
+
+    .legend {
+        font-size: 11px;
+        gap: 6px 12px;
+        margin-top: 20px;
+    }
+
+    .legend-square {
+        width: 10px;
+        height: 10px;
+    }
+
+    .number-label {
+        font-size: 13px;
+    }
+
+    hr {
+        margin-right: 10px;
+    }
+}
+
+
 
 
     </style>
@@ -98,8 +136,8 @@ body {
 
 <body>
 <hr>
-    <h1>Decisions with only right-wing judges<br> are much more common</h1>
-    <p>In 76 decisions, the three-judge panel consisted entirely of right-wing judges. An all-left-wing panel occurred only once.</p>
+    <h1>Left-wing judges rarely hold a majority on judicial panels</h1>
+    <p>Most of the 1371 analyzed Federal Supreme Court decisions with 3-judge-panels are made with a right-wing-majority (FDP and SVP).</p>
 
 <div class="legend">
     <div class="legend-item">
@@ -125,7 +163,7 @@ body {
     <!-- Hier kommt die Grafik hinein -->
     <div id="chart"></div>
 
-<span>Source: <a href="https://www.bger.ch/" target="_blank">Federal Court</a> | Data collection and analysis: Mischa Aebi</p>
+<span style="font-size:0.75em">Source: <a href="https://www.bger.ch/" target="_blank">Federal Court</a> | Data collection and analysis: Mischa Aebi</p>
     <hr>
     <script>
 
@@ -144,18 +182,59 @@ d3.csv("3judge_composition_counts.csv").then(data => {
 
 function drawChart(data) {
 
-    // nach Anzahl Urteile sortieren
-    data.sort(
-        (a, b) =>
-            d3.descending(
-                a.number_decisions,
-                b.number_decisions
-            )
-    );
+   
+
+
+const order = {
+    "3-0-0": 1,
+    "2-1-0": 2,
+    "2-0-1": 3,
+    "1-2-0": 9,
+    "1-1-1": 10,
+    "1-0-2": 6,
+    "0-3-0": 7,
+    "0-2-1": 8,
+    "0-1-2": 5,
+    "0-0-3": 4
+};
+
+data.sort((a, b) => {
+
+    const keyA = `${a.right}-${a.center}-${a.left}`;
+    const keyB = `${b.right}-${b.center}-${b.left}`;
+
+    return order[keyA] - order[keyB];
+});
+
+console.log(
+    data.map(d => `${d.right}-${d.center}-${d.left}`)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     const width = 580;
     const rowHeight = 33;
-    const height = data.length * rowHeight + 60;
+    const height = data.length * rowHeight + 30;
 
     const svg = d3
     .select("#chart")
@@ -168,11 +247,11 @@ function drawChart(data) {
 
 
     // Farben
-    const colors = {
-     right: "#6689A6",   
-    center: "#D69C4A",  
-    left: "#C56B63"     
-    };
+const colors = {
+  right: "#1B5299",   // sattes Kobaltblau, kräftiger als Standard-Blau
+  center: "#C77D2E",  // kräftiges Bernstein/Kupfer, kein Standard-Orange
+  left: "#B0223A"      // Karminrot, kräftiger als Standard-Rot
+};
 
 
     // Skala für Balken
@@ -202,20 +281,81 @@ function drawChart(data) {
 svg.append("text")
     .attr("x", 1)
     .attr("y", 18)
-    .attr("font-size", "13px")
-    .attr("font-weight", "400")
+    .attr("font-size", "10px")
+   
+    .attr("font-weight", "600")
     .text("Judges by party ");
 
 svg.append("text")
     .attr("x", 128)
     .attr("y", 18)
-    .attr("font-size", "13px")
-    .attr("font-weight", "400")
+    .attr("font-size", "10px")
+    
+    .attr("font-weight", "600")
     .text("Number of decisions");
 
 
 
+    
 
+
+
+
+
+
+svg.append("rect")
+        .attr("x", 124)
+        .attr("y", 23)
+        .attr("height", 98)
+        .attr("width",381)
+        .attr("fill", colors.right)
+        .attr("opacity", 0.15)
+       
+
+  svg.append("text")
+    .attr("x", 295)
+    .attr("y", 35)
+    .attr("font-size", "10px")
+    .attr("font-weight", "400")
+    .attr("font-weight", "bold")
+    .attr("fill", colors.right)
+    .text("Total 640 decisions with right-wing-majority");  
+
+svg.append("rect")
+        .attr("x", 124)
+        .attr("y", 123)
+        .attr("height", 98)
+        .attr("width",381)
+        .attr("font-weight", "bold")
+         .attr("fill", colors.left)
+        .attr("opacity", 0.1)
+        
+  svg.append("text")
+    .attr("x", 297)
+    .attr("y", 135)
+    .attr("font-size", "10px")
+    .attr("font-weight", "400")
+    .attr("fill", colors.left )
+    .attr("font-weight", "bold")
+    .text("Total 259 decisions with left-wing-majority");  
+
+
+svg.append("rect")
+        .attr("x", 123)
+        .attr("y", 223)
+        .attr("height", 98)
+        .attr("width",384)
+         .attr("fill", colors.center )
+        .attr("opacity", 0.1)
+        
+  svg.append("text")
+    .attr("x", 313)
+    .attr("y", 235)
+    .attr("font-size", "10px")
+    .attr("font-weight", "400")
+    .attr("fill", colors.center  )
+    .attr("font-weight", "bold")
+    .text("Total 81 decisions with center-majority");  
 
 
 
@@ -256,7 +396,7 @@ svg.append("text")
     .data(judges)
     .join("g")
     .attr("class", "judge")
-    .attr("transform", (judge, i) => `translate(${i * 42}, -14)`);
+    .attr("transform", (judge, i) => `translate(${2+i * 42}, -14)`);
 
 // farbiges Quadrat
 judgeGroups

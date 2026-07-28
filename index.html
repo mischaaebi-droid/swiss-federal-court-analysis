@@ -1,256 +1,370 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Meta Ads</title>
-    <a href="https://fonts.google.com/">Google Fonts</a>
 
-    <!-- Google fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Swiss Federal Supreme Court</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet"
+    >
+
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
         body {
             margin: 0;
-            font-size: 20px;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            text-rendering: optimizeLegibility;
+            padding: 0;
+            width: 100%;
         }
-        
+
+        body {
+            font-size: 20px;
+            font-family: Georgia, "Times New Roman", Times, serif;
+            text-rendering: optimizeLegibility;
+            color: #222;
+        }
+
+        a {
+            color: #f05349;
+        }
+
+        img,
+        iframe,
+        video {
+            max-width: 100%;
+        }
+
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 65vh;
+            min-height: 560px;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        .hero-caption {
+            max-width: 900px;
+            margin: 8px auto 0 auto;
+            padding-left: 12px;
+            padding-right: 12px;
+            font-size: 0.75em;
+            line-height: 1.4;
+            color: #666;
+            text-align: center;
+        }
+
+        .content {
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .header {
+            padding-top: 2em;
+            padding-bottom: 0.5em;
+        }
+
         .Spitzmarke {
-            font-family: 'Inter', sans-serif;
+            font-family: "Inter", sans-serif;
             font-size: 0.95rem;
             font-weight: 700;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             color: #f05349;
-            ;
         }
-        
-        .content {
-            max-width: 640px;
-            margin: auto;
-        }
-        
-        .header {
-            padding-top: 1em;
-            padding-bottom: 1em;
-        }
-        
-        a {
-            color: #f05349;
-        }
-        
-        .footer {
-            background: #f4f4f4;
-            text-align: center;
-            font-size: 0.8em;
-            margin-top: 4em;
-            padding: 4em 0;
-        }
-        
-        figure {
-            margin: 0;
-            padding-bottom: 1.2em;
-        }
-        
-        figcaption {
-            font-size: 0.8em;
-            text-align: center;
-            margin-top: 0.5em;
-            color: #666;
-        }
-        
-        h1 {
-            font-family: 'Lora', Georgia, serif;
-            font-weight: bold;
-            font-size: 2.5em;
-            line-height: 1.1;
-        }
-        
+
         .subhead {
-            font-family: 'Lora', Georgia, serif;
+            margin: 0;
+            font-family: "Lora", Georgia, serif;
             font-size: 1.18rem;
             font-weight: 560;
             line-height: 1.45;
             color: #444;
         }
-        
-        iframe,
-        img,
-        video {
-            max-width: 100%;
-        }
-        
-        p {
-            line-height: 1.6;
-            margin: 0;
-            padding-bottom: 1.2em;
-        }
-        
-        ul {
-            margin: 0;
-            padding-bottom: 1em;
-            line-height: 1.6;
-        }
-        
-        iframe {
-            padding-bottom: 1.2em;
-        }
-        
-        code {
-            font-family: 'Courier New', monospace;
-            background: #fffbaf;
-            font-size: 0.85em;
-        }
-        
-        .full-width figure {
-            text-align: center;
-        }
-        
+
         .byline {
-            margin-bottom: 1em;
-            color:#666;
+            margin-top: 0.8em;
+            margin-bottom: 2em;
+            color: #666;
         }
-        /* margin on mobile */
-        
-        @media (max-width: 640px) {
+
+        .byline p {
+            padding-bottom: 0;
+        }
+
+        .byline a {
+            color: #666;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-bottom: 1.2em;
+            line-height: 1.6;
+        }
+
+        h2,
+        h3 {
+            font-family: "Inter", Arial, sans-serif;
+            line-height: 1.2;
+        }
+
+        h3 {
+            margin-top: 1.4em;
+            margin-bottom: 0.7em;
+            font-size: 1.1em;
+        }
+
+        .chart {
+            width: 100%;
+            border: 0;
+            display: block;
+            margin-bottom: 1.5em;
+        }
+
+        .chart-large {
+            height: 688px;
+        }
+
+        .chart-medium {
+            height: 400px;
+        }
+
+        .footer {
+            background: #f4f4f4;
+            text-align: center;
+            font-size: 0.8em;
+            margin-top: 4em;
+            padding: 4em 1em;
+        }
+		
+		
+		.data-glossary {
+    border: 1px solid #aaa;
+    padding: 1.2em 1.4em;
+    margin: 1.5em 0 2em 0;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.data-glossary h3 {
+    margin-top: 0;
+    margin-bottom: 0.7em;
+    font-size: 1em;
+}
+
+.data-glossary p {
+    padding-bottom: 0.6em;
+}
+
+.data-glossary p:last-child {
+    padding-bottom: 0;
+}
+		
+		
+		
+		
+		
+		
+		
+		
+
+        MOBILE
+        ******************************** */
+
+        @media (max-width: 700px) {
             body {
                 font-size: 18px;
             }
-            .content {
-                padding-left: 0.5em;
-                padding-right: 0.5em;
+
+            .hero {
+                height: 70vh;
+                min-height: 500px;
             }
+
+            .content {
+                padding-left: 0.75em;
+                padding-right: 0.75em;
+            }
+
+            .hero-caption {
+                text-align: left;
+            }
+        }
+
+        h1 {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+			font-size:3rem;
+        }
+
+        .hero-warning {
+            position: absolute;
+            top: 50%;
+            right: 20%;
+            width: min(300px, 25%);
+            padding: 14px 18px;
+            border: 2px solid #f05349;
+            color: #f05349;
+            font-family: "Inter", Arial, sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.35;
+            background: rgba(255, 255, 255, 0.85);
         }
     </style>
 </head>
 
 <body>
+
+    <div class="hero">
+        <img
+            src="bundesgericht1.jpg"
+            alt="Swiss Federal Supreme Court"
+        >
+
+        <div class="hero-warning">
+            PRELIMINARY RESULTS<br>
+            These findings are based on 2,500 rulings and should be treated with caution. A larger dataset of 15,000 rulings is currently being cleaned and validated.
+        </div>
+    </div>
+
+    <div class="hero-caption">
+        The Federal Supreme Court – where Switzerland's most important rulings are made, often affecting the entire population.
+    </div>
+
+    <h1>
+        Do right-wing and left-wing judges rule differently?
+    </h1>
+
     <div class="content">
+
         <div class="header">
-            <h1>Left-wing Federal Supreme Court judges are much more likely to uphold appeal </h1>
-            <p class="subhead"><b class="Spitzmarke">SWITZERLAND </b>According to our analysis, the Swiss Federal Supreme Court is significantly more likely to uphold criminal appeals when a majority of the three-judge panel belongs to a left-wing political party.
-
+            <p class="subhead">
+                <b class="Spitzmarke">SWITZERLAND </b>
+                According to our analysis, the Swiss Federal Supreme Court is significantly more likely to uphold criminal appeals when a majority of the three-judge panel belongs to a left-wing political party.
             </p>
-
-        </div>
-        <div class="byline" style="color:#666">
-            <p>By <a style="color:#666" href="https://www.tagesanzeiger.ch/author/63402126/mischa-aebi">Mischa Aebi</a></p>
         </div>
 
-
-
-    </div>
-    <div class="full-width">
-        <figure>
-            <img src="bundesgericht.jpg">
-            <figcaption>The Federal Supreme Court – where Switzerland’s most important rulings are made, often affecting the entire population, and not always independently..</figcaption>
-        </figure>
-    </div>
-    <div class="content">
-
-
-
-
-
-
-
-
-
-
-
-        <p> Judges are expected to decide cases independently. Yet they are repeatedly accused of being influenced by their political affiliation. 
-		One example came five years ago, when the Swiss Federal Supreme Court ruled that landlords could earn substantially higher returns on rental 
-		properties. Not a single left-wing judge sat on the five-member panel. More controversially, the judges justified their decision by referring to 
-		demands that had also been made by centre-right politicians in Parliament.
-        </p>
-	<iframe
-    src="grafik/chart_3er_comp.html"
-    style="width: 100%; height: 688px; border: 0; display: block;"
-    title="Composition of five-judge panels">
-</iframe>
-        <p> Our analysis of several thousand criminal rulings now provides the first statistical evidence that left-leaning and right-leaning Federal Supreme Court 
-		judges decide cases differently. To conduct the analysis, we examined the Court's 10,000 most recent judgments. 
-		Because most cases are decided by three-judge panels, we limited our dataset to those rulings.
+        <div class="byline">
             <p>
-               <iframe
-    src="grafik/chart_3er_crim.html"
-    style="width: 100%; height: 400px; border: 0; display: block;"
-    title="Composition of five-judge panels">
-</iframe>
+                By
+                <a href="https://www.tagesanzeiger.ch/author/63402126/mischa-aebi">
+                    Mischa Aebi
+                </a>
+            </p>
+        </div>
 
-            <h3>Right-leaning three-judge panels make disproportionately many rulings </h3>
-            <p> We then analysed all cases in which two of the three judges belonged either to right-of-centre parties or to left-wing parties. 
-			Cases in which judges from centrist parties formed the majority were excluded from the analysis.
-                <p>
+        <p>
+            It was a ruling with consequences for millions of tenants. Five years ago, the Swiss Federal Supreme Court decided that landlords could earn significantly higher returns on residential properties than before. The ruling was handed down by five judges. Strikingly, not a single one belonged to a left-wing party. The reasoning made the decision even more controversial: among other things, the judges referred to demands that had previously also been raised by centre-right politicians in Parliament.
+            Judges and courts in Switzerland repeatedly insist that party affiliation plays no role in judicial decisions. This matters particularly because Switzerland has an unusual system: anyone who wants to become a judge generally needs to belong to a political party. Judicial seats are distributed among the parties roughly according to their political strength. The idea is, in part, to ensure that different political views are represented on the courts and that decisions are balanced.
+            To avoid controversy, however, the Federal Supreme Court does not make its judges’ party affiliations readily transparent.
+        </p>
 
+        <p>
+            There is no official list. Nor are there official statistics analysing the political composition of judicial panels.
+            We have now examined 2,500 Federal Supreme Court rulings, extracting and analysing the data using computational methods. Our analysis points to two striking findings:
+            Left-wing judges do, in fact, rule differently from right-wing judges. A large number of rulings are handed down by panels with a right-wing majority.
+        </p>
 
-                
-                    <!-- In Abschnit abschnit </p>
-                <iframe title="More than one billion political ads were viewed on Facebook and Instagram in 2023" aria-label="Säulen" id="datawrapper-chart-OsIXK" src="https://datawrapper.dwcdn.net/OsIXK/7/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;"
-                    height="522" data-external="1"></iframe> -->
+        <h3>Criminal appeals fare better before left-wing judges</h3>
 
+        <p>
+            Of the 2,500 rulings, we analysed those decided by three-judge panels — 1,371 cases in total. Three-judge panels are the standard composition at the Federal Supreme Court for decisions on the merits.
+            In criminal cases, there is a clear difference between right-wing and left-wing judges: when two of the three judges on a panel are left-wing, appeals are fully or partially upheld about one-third more often than when two of the three judges are right-wing.
 
-                <p>
-
-                    abschnit aabshcnit
-
-
-
-                    <h3>zwischen tietel?</h3>
-
-                    <p>
-                        Abschnittabschitt
-                        <p>
-                            <!-- <iframe title="Much political advertising was paid for in foreign currencies." aria-label="Tabelle" id="datawrapper-chart-qw8qc" src="https://datawrapper.dwcdn.net/qw8qc/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;"
-                                height="463" data-external="1"></iframe>
-                            <iframe title="Political ad spending paid in US dollars and euros" aria-label="Tabelle" id="datawrapper-chart-PqPof" src="https://datawrapper.dwcdn.net/PqPof/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;"
-                                height="582" data-external="1"></iframe> Abshcnit aabschnitt -->
-                            <p>
-                                Abschnitt.
-                            </p>
-
-
-                            <!--         
             <iframe
-                title="The biggest pumpkins, by state (Copy)"
-                aria-label="Bar Chart"
-                id="datawrapper-chart-MLQxw"
-                src="https://datawrapper.dwcdn.net/MLQxw/1/"
-                scrolling="no"
-                frameborder="0"
-                style="width: 0; min-width: 100% !important; border: none;"
-                height="757"
-                data-external="1">
-            </iframe> -->
+                class="chart chart-medium"
+                src="grafik/chart_3er_crim.html"
+                title="Criminal law rulings by political majority"
+                scrolling="no">
+            </iframe>
 
+            Prosecutors can also appeal to the Federal Supreme Court. In the vast majority of cases, however, it is defendants or convicted offenders who challenge a decision — for example, a conviction, the length of a sentence or an order for pre-trial detention.
+            Put simply, left-wing judges in criminal cases rule in favour of defendants and convicted offenders more often. Those whose appeals come before a panel with a right-wing majority, by contrast, have a lower chance of success.
+        </p>
 
-                            <script type="text/javascript">
-                                (function() {
-                                    function e() {
-                                        window.addEventListener(`message`, function(e) {
-                                            if (e.data[`datawrapper-height`] !== void 0) {
-                                                var t = document.querySelectorAll(`iframe`);
-                                                for (var n in e.data[`datawrapper-height`])
-                                                    for (var r = 0, i; i = t[r]; r++)
-                                                        if (i.contentWindow === e.source) {
-                                                            var a = e.data[`datawrapper-height`][n] + `px`;
-                                                            i.style.height = a
-                                                        }
-                                            }
-                                        })
-                                    }
-                                    e()
-                                })();
-                            </script>
+        <h3>In administrative law, the picture is reversed</h3>
 
+        <p>
+            The pattern looks different in administrative law. Here, cases often pit citizens against public authorities — for example, over decisions by tax, immigration or other administrative agencies.
+            In these cases, it is the right-wing judges who are more likely to rule in favour of appellants. They overturn decisions by public authorities more often than their left-wing colleagues do.
+
+            <iframe
+                class="chart chart-medium"
+                src="grafik/chart_3er_publaw.html"
+                title="Public law rulings by political majority"
+                scrolling="no">
+            </iframe>
+
+            This finding is particularly significant because Federal Supreme Court rulings can have consequences far beyond an individual case. As Switzerland’s highest court, it shapes case law across the country. The rental-property ruling mentioned at the beginning is a case in point: a politically one-sided panel handed down a decision that allowed landlords across Switzerland to earn higher returns on residential properties.
+        </p>
+
+        <h3>Right-wing judges form majority particularly often</h3>
+
+        <p>
+            Our analysis suggests that politically one-sided panels are far from exceptional. Of the 1,371 rulings decided by three judges, 640 were handed down by panels with a right-wing majority. That amounts to just under 47 percent of all three-judge panels in our analysis.
+            Even more striking are panels composed entirely of judges from one side of the political spectrum. Seventy-nine rulings were handed down exclusively by right-wing judges. In other words, these panels included neither a left-wing judge nor a judge from a centrist party.
+
+            <iframe
+                class="chart chart-large"
+                src="grafik/chart_3er_comp.html"
+                title="Composition of three-judge panels"
+                scrolling="no">
+            </iframe>
+
+            At the other end of the political spectrum, there is virtually nothing comparable. Among the 1,371 rulings, only one was handed down by an entirely left-wing panel.
+            That is striking given Switzerland’s broader political balance. Together, the Social Democrats and the Greens receive around 28 percent of the vote in National Council elections. Yet all-left three-judge panels are virtually nonexistent in the rulings we analysed, while all-right panels appear dozens of times.
+            This raises a question that goes to the heart of the credibility of Switzerland’s judicial system: If a judge’s political affiliation is measurably associated with how they rule, how politically balanced should judicial panels be?
+        </p>
+		
+		<div class="data-glossary">
+    <h3>About the data</h3>
+
+    <p>
+      The analysis is based on rulings by the Swiss Federal Supreme Court that were automatically downloaded from the court’s website. Information including the judges involved,
+	  the area of law and the outcome of each case was extracted from the rulings. The judges’ political affiliations were then added using a separate list.
+
+The rulings were processed and classified automatically using Python and rule-based text patterns. The resulting data was checked for
+ potential errors and inconsistencies and, in part, compared with manually classified rulings.
+    </p>
+</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
     </div>
+
+    <div class="footer">
+        Source: Swiss Federal Supreme Court. Analysis: Mischa Aebi.
+    </div>
+
 </body>
 
 </html>
