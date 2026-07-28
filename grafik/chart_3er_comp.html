@@ -375,7 +375,7 @@ svg.append("text")
     
     .attr("font-size", isMobile ? "19px" : "12px")
     .attr("font-weight", "600")
-    .text("decisions");
+    .text("Decisions");
 
 const separatorOffset = isMobile ? 10 : 0;
 
@@ -502,7 +502,7 @@ addBrace(
 
 // Letzte Zeile: keine Mehrheit
 
-const noMajorityY = 50 + 9 * rowHeight;
+const noMajorityY = 50 + 9 * rowHeight - (isMobile ? 0 : 10);
 const xBrace = braceX;
 
 const braceHeight = isMobile ? 20 : 13;

@@ -87,11 +87,6 @@ p{font-size:15px}
 }
 
 
-
-
-
-
-
 .legend-square.right {
     background: #1B5299;
 }
@@ -103,6 +98,9 @@ p{font-size:15px}
 .legend-square.left {
     background: #B0223A;
 }
+
+
+
 
 /*  MOBILE */
 
@@ -164,7 +162,7 @@ p{font-size:15px}
 
         gap: 6px 12px;
 
-        font-size: 10px;
+        font-size: 11px;
         line-height: 1.25;
     }
 
@@ -216,10 +214,8 @@ p{font-size:15px}
 </head>
 <body>
 <hr>
-
 <h1>Right-wing judges overturn administrative decisions more often</h1>
 <p>Example: In 215 cases, at least two of three judges were from right-wing parties. They upheld 24.2% of appeals.</p>
-
 
 <div class="legend">
     <div class="legend-title">Majority:</div>
@@ -269,9 +265,9 @@ const rowHeight = isMobile ? 48 : 40;
 const top = 48;
 
 const labelX = 0;
-const decisionsX =isMobile ? 45 : 38;
+const decisionsX =isMobile ? 47 : 38;
 const decisionsWidth = isMobile ? 200 : 240;
-const successX =isMobile ? 390 : 372;
+const successX =isMobile ? 393 : 372;
 const successWidth = isMobile ? 400: 380;
 const decisionsTitleX = isMobile ? 2 : decisionsX - 39;
 const successTitleX = isMobile ? successX -76 : successX - 54;
@@ -294,7 +290,7 @@ const successScale = d3.scaleLinear()
 svg.append("text")
     .attr("x", decisionsTitleX)
     .attr("y", 18)
-    .style("font-size", isMobile ? "22px" : "12px")
+    .style("font-size", isMobile ? "24.3px" : "13px")
     .attr("font-weight", 650) 
     .attr("class", "column-label")
     .text("Number of decisions");
@@ -303,7 +299,7 @@ svg.append("text")
     .attr("x", successTitleX)
     .attr("y", 18)
     .attr("font-weight", 600) 
-    .style("font-size", isMobile ? "22px" : "12px")
+    .style("font-size", isMobile ? "24.3px" : "13px")
     .attr("class", "column-label")
     .text("Success rate");
 
@@ -318,28 +314,28 @@ const rows = svg.selectAll(".row")
 rows.append("rect")
     .attr("x", decisionsX)
     .attr("y", -13)
-    .attr("height", 38)
+     .attr("height", isMobile ? 40: 34)
     .attr("width", d => decisionsScale(d.decisions))
     .attr("fill", d => colors[d.wing]);
 
 rows.append("text")
     .attr("x", 1)
     .attr("y", 13)
-      .style("font-size", isMobile ? "22px" : "14px")
+      .style("font-size", isMobile ? "24px" : "14px")
     .attr("class", "value-label")
     .text(d => d.decisions);
 
 rows.append("rect")
     .attr("x", successX)
     .attr("y", -13)
-    .attr("height", 38)
+     .attr("height", isMobile ? 40: 34)
     .attr("width", d => successScale(d.successrate))
     .attr("fill", d => colors[d.wing]);
 
 rows.append("text")
     .attr("x", 320)
     .attr("y", 13)
-    .style("font-size", isMobile ? "22px" : "14px")
+    .style("font-size", isMobile ? "24px" : "14px")
     .attr("class", "value-label")
     .text(d => `${d.successrate.toFixed(1)}%`);
 }
