@@ -178,60 +178,210 @@
 .data-glossary p:last-child {
     padding-bottom: 0;
 }
-		
-		
-		
-		
-		
-		
-		
-		
 
-        MOBILE
-        ******************************** */
 
-        @media (max-width: 700px) {
-            body {
-                font-size: 18px;
-            }
+h1 {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 3rem;
+}
 
-            .hero {
-                height: 70vh;
-                min-height: 500px;
-            }
 
-            .content {
-                padding-left: 0.75em;
-                padding-right: 0.75em;
-            }
 
-            .hero-caption {
-                text-align: left;
-            }
-        }
 
-        h1 {
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-			font-size:3rem;
-        }
 
-        .hero-warning {
-            position: absolute;
-            top: 50%;
-            right: 20%;
-            width: min(300px, 25%);
-            padding: 14px 18px;
-            border: 2px solid #f05349;
-            color: #f05349;
-            font-family: "Inter", Arial, sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            line-height: 1.35;
-            background: rgba(255, 255, 255, 0.85);
-        }
+
+
+
+.hero-warning {
+    position: absolute;
+    top: 67%;
+    right: 0.5%;
+    width: min(300px, 25%);
+    padding: 14px 18px;
+
+    border: 2px solid #f05349;
+    color: #f05349;
+    background: rgba(255, 255, 255, 0.85);
+
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+
+    z-index: 10;
+}
+		
+		
+		
+	/* ************** MOBILE *********************/
+
+
+@media (max-width: 700px) {
+
+    html,
+    body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+
+    /* Hero-Bild */
+    .hero {
+        height: 52vh;
+        min-height: 360px;
+    }
+
+    .hero img {
+        object-position: center center;
+    }
+
+
+    /* Hinweisbox auf Hero */
+   .hero-warning {
+    top: 20px;
+    bottom: auto;
+    left: 16px;
+    right: auto;
+
+    width: calc(100% - 32px);
+    max-width: none;
+
+    padding: 10px 12px;
+
+    font-size: 0.75rem;
+    line-height: 1.3;
+
+    z-index: 10;
+}
+
+
+    /* Bildlegende */
+    .hero-caption {
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-top: 6px;
+
+        font-size: 0.7rem;
+        line-height: 1.35;
+        text-align: left;
+    }
+
+
+    /* Haupttitel */
+    h1 {
+        padding-left: 16px;
+        padding-right: 16px;
+
+        margin-top: 30px;
+        margin-bottom: 15px;
+
+        font-size: 2rem;
+        line-height: 1.08;
+        text-align: left;
+    }
+
+
+    /* Artikel */
+    .content {
+        width: 100%;
+        max-width: none;
+
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+
+    /* Lead */
+    .header {
+        padding-top: 1em;
+        padding-bottom: 0.3em;
+    }
+
+    .subhead {
+        font-size: 1.05rem;
+        line-height: 1.45;
+    }
+
+    .Spitzmarke {
+        font-size: 0.78rem;
+    }
+
+
+    /* Byline */
+    .byline {
+        margin-top: 0.7em;
+        margin-bottom: 1.5em;
+        font-size: 0.9rem;
+    }
+
+
+    /* Lauftext */
+    p {
+        font-size: 1rem;
+        line-height: 1.55;
+        padding-bottom: 1.1em;
+    }
+
+
+    /* Zwischentitel */
+    h3 {
+        margin-top: 1.5em;
+        margin-bottom: 0.65em;
+
+        font-size: 1.12rem;
+        line-height: 1.25;
+    }
+
+
+    /* Grafiken */
+    .chart {
+        width: 100%;
+        margin-top: 0.5em;
+        margin-bottom: 1.4em;
+    }
+
+    .chart-medium {
+        height: 330px;
+    }
+
+    .chart-large {
+        height: 500px;
+    }
+
+
+    /* Datenbox */
+    .data-glossary {
+        padding: 1em;
+        margin-top: 1.3em;
+        margin-bottom: 1.5em;
+
+        font-size: 0.9rem;
+        line-height: 1.45;
+    }
+
+    .data-glossary h3 {
+        font-size: 1rem;
+    }
+
+
+    /* Footer */
+    .footer {
+        margin-top: 2.5em;
+        padding: 2.5em 16px;
+
+        font-size: 0.75rem;
+        line-height: 1.5;
+    }
+}
     </style>
 </head>
 
@@ -314,7 +464,8 @@
                 class="chart chart-medium"
                 src="grafik/chart_3er_publaw.html"
                 title="Public law rulings by political majority"
-                scrolling="no">
+                scrolling="no"
+                 style="height: 420px;">
             </iframe>
 
             This finding is particularly significant because Federal Supreme Court rulings can have consequences far beyond an individual case. As Switzerland’s highest court, it shapes case law across the country. The rental-property ruling mentioned at the beginning is a case in point: a politically one-sided panel handed down a decision that allowed landlords across Switzerland to earn higher returns on residential properties.
@@ -325,13 +476,15 @@
         <p>
             Our analysis suggests that politically one-sided panels are far from exceptional. Of the 1,371 rulings decided by three judges, 640 were handed down by panels with a right-wing majority. That amounts to just under 47 percent of all three-judge panels in our analysis.
             Even more striking are panels composed entirely of judges from one side of the political spectrum. Seventy-nine rulings were handed down exclusively by right-wing judges. In other words, these panels included neither a left-wing judge nor a judge from a centrist party.
-
-            <iframe
-                class="chart chart-large"
-                src="grafik/chart_3er_comp.html"
-                title="Composition of three-judge panels"
-                scrolling="no">
-            </iframe>
+</p>
+<iframe
+    class="chart chart-large"
+    src="grafik/chart_3er_comp.html"
+    title="Composition of three-judge panels"
+    scrolling="no"
+    style="height: 660px;">
+</iframe>
+<p>
 
             At the other end of the political spectrum, there is virtually nothing comparable. Among the 1,371 rulings, only one was handed down by an entirely left-wing panel.
             That is striking given Switzerland’s broader political balance. Together, the Social Democrats and the Greens receive around 28 percent of the vote in National Council elections. Yet all-left three-judge panels are virtually nonexistent in the rulings we analysed, while all-right panels appear dozens of times.
@@ -348,6 +501,9 @@
 The rulings were processed and classified automatically using Python and rule-based text patterns. The resulting data was checked for
  potential errors and inconsistencies and, in part, compared with manually classified rulings.
     </p>
+    <a href="https://github.com/mischaaebi-droid/swiss-federal-court-analysis" target="_blank">
+    All data, claculations and analyse on GitHub repository
+</a>
 </div>
 		
 		
@@ -363,6 +519,9 @@ The rulings were processed and classified automatically using Python and rule-ba
 
     <div class="footer">
         Source: Swiss Federal Supreme Court. Analysis: Mischa Aebi.
+        <a href="https://github.com/mischaaebi-droid/swiss-federal-court-analysis" target="_blank">
+   GitHub
+</a>
     </div>
 
 </body>

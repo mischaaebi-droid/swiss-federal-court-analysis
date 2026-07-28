@@ -6,46 +6,66 @@
     <title>Decisions and success rate by political wing</title>
     <script src="https://cdn.jsdelivr.net/npm/d3@7">
 </script>
-    <style>
+ <style>
 html,
 body {
     margin-left: 6px;
     margin-right: 5px;
-    padding: 0;
+    padding:0px;
     width: 100%;
     overflow-x: hidden;
 }
 
-hr { margin-right: 45px; }
+
+hr {margin-right:45px;
+     border: 0;
+    border-top: 2px solid #999;
+    
+
+}
 
 body {
     font-family: "Roboto", Arial, sans-serif;
     max-width: 1000px;
 }
 
-h1 {
-    font-family: "Roboto", Arial, sans-serif;
-    font-weight: 700;
-    margin-bottom: 5px;
-    font-size: 1.5em;
-}
-
-p {
-    margin-top: 0;
-}
-
 #chart {
     width: 100%;
-    margin-top: 22px;
+    
 }
+
+        h1 {
+
+            font-family: "Roboto", Arial, sans-serif;
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+            margin-top:40px;
+        }
+
+
+
+p{font-size:15px}
+
+        #chart {
+            margin-top: 13px;
+        }
+.composition-label {
+            font-size: 14px;
+        }
+
+        .number-label {
+            font-size: 13px;
+            font-weight: 400;
+        }
 
 .legend {
     display: flex;
     flex-wrap: wrap;
     gap: 10px 20px;
     margin-top: 30px;
-    margin-bottom: 0;
-    font-size: 13px;
+    margin-bottom: 0px;
+    font-size: 12px;
 }
 
 .legend-item {
@@ -55,55 +75,171 @@ p {
 }
 
 .legend-square {
-    width: 12px;
-    height: 12px;
+    width: 11px;
+    height: 11px;
     display: inline-block;
 }
 
-.legend-square.right { background: #6689A6; }
-.legend-square.center { background: #D69C4A; }
-.legend-square.left { background: #C56B63; }
+.source{font-size: 0.8rem;
 
-.value-label {
-    font-size: 14px;
-    font-weight: bold;
+        margin-top:10px;
+        margin-bottom:35px;
 }
 
-.group-label,
-.column-label {
-    font-size: 13px;
+
+
+
+
+
+
+.legend-square.right {
+    background: #1B5299;
 }
 
-.source {
-    font-size: 13px;
+.legend-square.center {
+    background: #C77D2E;
 }
+
+.legend-square.left {
+    background: #B0223A;
+}
+
+/*  MOBILE */
+
+@media (max-width: 600px) {
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    body {
+        max-width: none;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+
+    /* obere und untere Linie */
+    hr {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        border-top-width: 1.5px;
+    }
+
+
+    /* Titel */
+    h1 {
+        margin-top: 20px;
+        margin-bottom: 5px;
+
+        padding: 0;
+
+        font-size: 16px;
+        line-height: 1.2;
+    }
+
+
+    /* Untertitel */
+    p {
+        margin-top: 0;
+
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+
+    /* Legende */
+    .legend {
+        margin-top: 15px;
+        margin-bottom: 25px;
+
+        gap: 6px 12px;
+
+        font-size: 10px;
+        line-height: 1.25;
+    }
+
+    .legend-item {
+        gap: 4px;
+    }
+
+    .legend-square {
+        width: 9px;
+        height: 9px;
+        flex-shrink: 0;
+    }
+
+
+    /* Grafik */
+    #chart {
+        width: 100%;
+        margin-top: 8px;
+        overflow: visible;
+    }
+
+    #chart svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        overflow: visible;
+    }
+
+
+    /* Zahlen in den Balken */
+    .number-label {
+        font-size: 14px;
+    }
+
+
+    /* Quellenangabe */
+    .source {
+        margin-top: 7px;
+        margin-bottom: 20px;
+
+        font-size: 10px;
+        line-height: 1.35;
+    }
+}
+
+
+
     </style>
 </head>
 <body>
 <hr>
 
 <h1>Right-wing judges overturn administrative decisions more often</h1>
-<p>Administrative law mostly deals with disputes between citizens and authorities. Right-wing federal judges overturn government decisions most often.</p>
+<p>Example: In 215 cases, at least two of three judges were from right-wing parties. They upheld 24.2% of appeals.</p>
+
 
 <div class="legend">
-    Majority:
+    <div class="legend-title">Majority:</div>
     <div class="legend-item">
         <span class="legend-square right"></span>
-        <span><b>Right: </b>FDP, SVP and Donzallaz</span>
+        <span><u>Right</u>: FDP, SVP, Donzallaz</span>
     </div>
     <div class="legend-item">
         <span class="legend-square center"></span>
-        <span><b>Center: </b>Mitte, GLP</span>
+        <span><u>Center</u>: Mitte, GLP</span>
     </div>
     <div class="legend-item">
         <span class="legend-square left"></span>
-        <span><b>Left: </b>SP, Grüne</span>
+        <span><u>Left</u>: SP, Grüne</span>
     </div>
 </div>
 
 <div id="chart"></div>
 
-<p class="source">Source: <a href="https://www.bger.ch/" target="_blank">Federal Court</a> | Data collection and analysis: Mischa Aebi</p>
+<p class="source">Source: <a href="https://www.bger.ch/" target="_blank">Federal Court</a> | party affiliations: own research.</p>
 <hr>
 
 <script>
@@ -118,24 +254,27 @@ d3.csv("3er_publaw.csv").then(data => {
 });
 
 function drawChart(data) {
+const isMobile = window.innerWidth <= 600;
+
 
 const colors = {
-    "right-wing": "#6689A6",
-    "center": "#D69C4A",
-    "left-wing": "#C56B63"
+  "right-wing": "#1B5299",  
+  "center": "#C77D2E",  
+  "left-wing": "#B0223A"      
 };
 
 const width = 760;
 const height = 190;
-const rowHeight = 50;
+const rowHeight = isMobile ? 48 : 40;
 const top = 48;
 
 const labelX = 0;
-const decisionsX = 5;
-const decisionsWidth = 340;
-const successX = 400;
-const successWidth = 340;
-
+const decisionsX =isMobile ? 45 : 38;
+const decisionsWidth = isMobile ? 200 : 240;
+const successX =isMobile ? 390 : 372;
+const successWidth = isMobile ? 400: 380;
+const decisionsTitleX = isMobile ? 2 : decisionsX - 39;
+const successTitleX = isMobile ? successX -76 : successX - 54;
 const svg = d3.select("#chart")
     .append("svg")
     .attr("viewBox", `0 0 ${width} ${height}`)
@@ -153,14 +292,18 @@ const successScale = d3.scaleLinear()
     .range([0, successWidth]);
 
 svg.append("text")
-    .attr("x", decisionsX)
+    .attr("x", decisionsTitleX)
     .attr("y", 18)
+    .style("font-size", isMobile ? "22px" : "12px")
+    .attr("font-weight", 650) 
     .attr("class", "column-label")
     .text("Number of decisions");
 
 svg.append("text")
-    .attr("x", successX)
+    .attr("x", successTitleX)
     .attr("y", 18)
+    .attr("font-weight", 600) 
+    .style("font-size", isMobile ? "22px" : "12px")
     .attr("class", "column-label")
     .text("Success rate");
 
@@ -175,26 +318,28 @@ const rows = svg.selectAll(".row")
 rows.append("rect")
     .attr("x", decisionsX)
     .attr("y", -13)
-    .attr("height", 26)
+    .attr("height", 38)
     .attr("width", d => decisionsScale(d.decisions))
     .attr("fill", d => colors[d.wing]);
 
 rows.append("text")
-    .attr("x", 10)
-    .attr("y", 5)
+    .attr("x", 1)
+    .attr("y", 13)
+      .style("font-size", isMobile ? "22px" : "14px")
     .attr("class", "value-label")
     .text(d => d.decisions);
 
 rows.append("rect")
     .attr("x", successX)
     .attr("y", -13)
-    .attr("height", 26)
+    .attr("height", 38)
     .attr("width", d => successScale(d.successrate))
     .attr("fill", d => colors[d.wing]);
 
 rows.append("text")
-    .attr("x", 410)
-    .attr("y", 5)
+    .attr("x", 320)
+    .attr("y", 13)
+    .style("font-size", isMobile ? "22px" : "14px")
     .attr("class", "value-label")
     .text(d => `${d.successrate.toFixed(1)}%`);
 }

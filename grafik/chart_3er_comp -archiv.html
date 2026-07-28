@@ -25,8 +25,6 @@ body {
 
 
 hr {margin-right:45px;
-     border: 0;
-    border-top: 2px solid #999;
     
 
 }
@@ -46,7 +44,7 @@ body {
             font-family: "Roboto", Arial, sans-serif;
             font-weight: 700;
             margin-bottom: 5px;
-            font-size: 1.1em;
+            font-size: 1em;
             margin-top:40px;
         }
 
@@ -87,11 +85,7 @@ p{font-size:15px}
     display: inline-block;
 }
 
-.source{font-size: 0.8rem;
 
-        margin-top:10px;
-        margin-bottom:35px;
-}
 
 
 
@@ -111,113 +105,45 @@ p{font-size:15px}
     background: #B0223A;
 }
 
-/* =========================================
-   MOBILE
-   ========================================= */
 
 @media (max-width: 600px) {
 
-    * {
-        box-sizing: border-box;
-    }
-
-    html,
     body {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
+        margin-left: 3px;
+        margin-right: 3px;
     }
 
-    body {
-        max-width: none;
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-
-
-    /* obere und untere Linie */
-    hr {
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        border-top-width: 1.5px;
-    }
-
-
-    /* Titel */
     h1 {
-        margin-top: 20px;
-        margin-bottom: 5px;
-
-        padding: 0;
-
-        font-size: 16px;
-        line-height: 1.2;
+        font-size: 1.25em;
+        line-height: 1.15;
+        padding-top:40px;
     }
 
-
-    /* Untertitel */
     p {
-        margin-top: 0;
-
-        font-size: 12px;
-        line-height: 1.4;
-    }
-
-
-    /* Legende */
-    .legend {
-        margin-top: 15px;
-        margin-bottom: 5px;
-
-        gap: 6px 12px;
-
-        font-size: 11px;
-        line-height: 1.25;
-    }
-
-    .legend-item {
-        gap: 4px;
-    }
-
-    .legend-square {
-        width: 9px;
-        height: 9px;
-        flex-shrink: 0;
-    }
-
-
-    /* Grafik */
-    #chart {
-        width: 100%;
-        margin-top: 8px;
-        overflow: visible;
-    }
-
-    #chart svg {
-        width: 100%;
-        height: auto;
-        display: block;
-        overflow: visible;
-    }
-
-
-    /* Zahlen in den Balken */
-    .number-label {
-        font-size: 14px;
-    }
-
-
-    /* Quellenangabe */
-    .source {
-        margin-top: 7px;
-        margin-bottom: 20px;
-
         font-size: 10px;
         line-height: 1.35;
     }
+
+    .legend {
+        font-size: 15px;
+        gap: 6px 12px;
+        margin-top: 20px;
+    }
+
+    .legend-square {
+        width: 10px;
+        height: 10px;
+    }
+
+    .number-label {
+        font-size: 13px;
+    }
+
+    hr {
+        margin-right: 10px;
+    }
 }
+
 
 
 
@@ -243,7 +169,7 @@ p{font-size:15px}
 
     <div class="legend-item">
         <span class="legend-square left"></span>
-        <span><b>Left: </b>SP, Grüne</span>
+        <span><b>Left: </b>SP,Grüne</span>
     </div>
 </div>
 
@@ -253,7 +179,8 @@ p{font-size:15px}
 
     <!-- Hier kommt die Grafik hinein -->
     <div id="chart"></div>
-<p class="source">Source: <a href="https://www.bger.ch/" target="_blank">Federal Court</a> | party affiliations: own research.</p>
+
+<span style="font-size:0.75em">Source: <a href="https://www.bger.ch/" target="_blank">Federal Court</a> | Data collection and analysis: ma</p>
     <hr>
     <script>
 
@@ -271,20 +198,8 @@ d3.csv("3judge_composition_counts.csv").then(data => {
 
 
 function drawChart(data) {
-const isMobile = window.innerWidth <= 600;
-    const rowHeight = isMobile ? 43 : 33;
 
-    
-     const judgeStartX = isMobile ? 200 : 147;
-    const judgeGap    = isMobile ? 45 : 42;
-
-    const barStartX   = isMobile ? 350 : 270;
-    const barWidth    = isMobile ? 220 : 270;
-    const braceX = isMobile ? 190 : 138;
-    const majorityX   = isMobile ? 162 : 110;
-    const majorityY1 = 40 + 1 * rowHeight - 3;
-    const majorityY2 = 40 + 4 * rowHeight - 3;
-    const majorityY3 = 40 + 7 * rowHeight - 3;
+   
 
 
 const order = {
@@ -335,8 +250,8 @@ console.log(
 
 
     const width = 580;
-
-const height = data.length * rowHeight + 30;
+    const rowHeight = 33;
+    const height = data.length * rowHeight + 30;
 
     const svg = d3
     .select("#chart")
@@ -364,7 +279,7 @@ const colors = {
             0,
             d3.max(data, d => d.number_decisions)
         ])
-        .range([0, barWidth]);
+        .range([0, 270]);
 
 
     // Eine Gruppe pro Zusammensetzung
@@ -382,33 +297,32 @@ const colors = {
 
     // Spaltenüberschriften
 svg.append("text")
-    .attr("x",  isMobile ? 200: 151)
-    .attr("y", 14)
-    .attr("font-size", isMobile ? "18px" : "12px")
+    .attr("x", 146)
+    .attr("y", 18)
+    .attr("font-size", "12px")
+   
     .attr("font-weight", "600")
-    .text("Judge-Panel ");
+    .text("Panel of judges ");
 
 svg.append("text")
-    .attr("x", isMobile ? 348: 270)
-    .attr("y", 14)
+    .attr("x", 270)
+    .attr("y", 18)
+    .attr("font-size", "12px")
     
-    .attr("font-size", isMobile ? "18px" : "12px")
     .attr("font-weight", "600")
     .text("Number of decisions");
 
-const separatorOffset = isMobile ? 4 : 0;
-
 const separatorYs = [
-    39 + 2.5 * rowHeight + separatorOffset,
-    39 + 5.5 * rowHeight + separatorOffset,
-    39 + 8.5 * rowHeight + separatorOffset
+    39 + 2.5 * rowHeight,  // zwischen Zeile 3 und 4
+    39+ 5.5 * rowHeight,  // zwischen Zeile 6 und 7
+    39 + 8.5 * rowHeight   // nach Zeile 9
 ];
 
 svg.selectAll(".separator-line")
     .data(separatorYs)
     .join("line")
     .attr("class", "separator-line")
-    .attr("x1", 0)
+    .attr("x1", 145)
     .attr("x2", 540)
     .attr("y1", d => d)
     .attr("y2", d => d)
@@ -424,54 +338,54 @@ svg.selectAll(".separator-line")
 
 const text = svg.append("text")
     .attr("x", 10)
-    .attr("y", majorityY1)
-    .attr("font-size", isMobile ? "18px" : "12px")
+    .attr("y", 70)
+    .attr("font-size", "12px")
        .attr("text-anchor", "end")
-    .attr("font-weight", 600)
+    .attr("font-weight", 400)
     .attr("fill", colors.right);
 
 text.append("tspan")
-    .attr("x", majorityX)
+    .attr("x", 110)
     .text("Right-wing majority");
 
 text.append("tspan")
-    .attr("x", majorityX)
+    .attr("x", 110)
     .attr("dy", "1.2em")
     .text("640 decisions");
     
 
 const text2 = svg.append("text")
     .attr("x", 10)
-    .attr("y", majorityY2)
-    .attr("font-size", isMobile ? "18px" : "12px")
-    .attr("font-weight", 600)
+    .attr("y", 170)
+    .attr("font-size", "12px")
+    .attr("font-weight", 400)
      .attr("text-anchor", "end")
     .attr("fill", colors.left);
    
 
 text2.append("tspan")
-    .attr("x", majorityX)
-    .text("Left-wing majority");
+    .attr("x", 110)
+    .text("Right-wing majority");
 
 text2.append("tspan")
-    .attr("x", majorityX)
+    .attr("x", 110)
     .attr("dy", "1.2em")
     .text("259 decisions");
 
 const text3 = svg.append("text")
     .attr("x", 10)
-    .attr("y", majorityY3)
+    .attr("y", 270)
     .attr("text-anchor", "end")
-   .attr("font-size", isMobile ? "18px" : "12px")
-    .attr("font-weight", 600)
+    .attr("font-size", "12px")
+    .attr("font-weight", 400)
     .attr("fill", colors.center);
 
 text3.append("tspan")
-    .attr("x", majorityX)
-    .text("Center majority");
+    .attr("x", 110)
+    .text("Right-wing majority");
 
 text3.append("tspan")
-    .attr("x", majorityX)
+    .attr("x", 110)
     .attr("dy", "1.2em")
     .text("81 decisions");
 
@@ -481,7 +395,7 @@ text3.append("tspan")
 // Geschweifte Klammern links neben den Richterquadraten
 function addBrace(yTop, yBottom, color) {
 
-    const x = braceX;
+    const x = 138;
     const middle = (yTop + yBottom) / 2;
 
     svg.append("path")
@@ -521,46 +435,6 @@ addBrace(
     colors.center
 );
 
-// Letzte Zeile: keine Mehrheit
-
-const noMajorityY = 40 + 9 * rowHeight;
-const xBrace = braceX;
-
-svg.append("path")
-    .attr("d", `
-        M ${xBrace} ${noMajorityY - 13}
-        C ${xBrace - 7} ${noMajorityY - 13},
-          ${xBrace - 7} ${noMajorityY - 7},
-          ${xBrace - 7} ${noMajorityY - 4}
-
-        C ${xBrace - 7} ${noMajorityY - 2},
-          ${xBrace - 13} ${noMajorityY},
-          ${xBrace - 15} ${noMajorityY}
-
-        C ${xBrace - 13} ${noMajorityY},
-          ${xBrace - 7} ${noMajorityY + 2},
-          ${xBrace - 7} ${noMajorityY + 4}
-
-        C ${xBrace - 7} ${noMajorityY + 7},
-          ${xBrace - 7} ${noMajorityY + 13},
-          ${xBrace} ${noMajorityY + 13}
-    `)
-    .attr("fill", "none")
-    .attr("stroke", "#777")
-    .attr("stroke-width", 1.2);
-
-
-    const text4 = svg.append("text")
-    .attr("x", 10)
-    .attr("y", noMajorityY +4)
-    .attr("text-anchor", "end")
-    .attr("font-size", isMobile ? "18px" : "12px")
-    .attr("font-weight", 600)
-    .attr("fill", "#777");
-
-text4.append("tspan")
-    .attr("x", majorityX)
-    .text("No majority");
 
 
 
@@ -591,75 +465,65 @@ text4.append("tspan")
         }
 
 
-       
-const judgeGroups = d3.select(this)
+       const judgeGroups = d3.select(this)
     .selectAll(".judge")
     .data(judges)
     .join("g")
     .attr("class", "judge")
-    .attr(
-    "transform",
-    (judge, i) =>
-        `translate(${judgeStartX + i * judgeGap}, -14) scale(${isMobile ? 1.3 : 1})`
-);
+    .attr("transform", (judge, i) => `translate(${147+i * 42}, -14)`);
 
-
-// Robe / Körper
+// farbiges Quadrat
 judgeGroups
-    .append("path")
-    .attr("d", "M4,26 L6,16 L10,12 L13,16 L16,12 L20,16 L22,26 Z")
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", 26)
+    .attr("height", 26)
+    
     .attr("fill", judge => colors[judge.group]);
 
 
-// weisser V-Kragen
-judgeGroups
-    .append("path")
-    .attr("d", "M9,13 L13,18 L17,13 L15,12 L13,15 L11,12 Z")
-    .attr("fill", "white");
-
-
-// Kopf
+// Head
 judgeGroups
     .append("circle")
     .attr("cx", 13)
     .attr("cy", 7)
-    .attr("r", 6)
-    .attr("fill", "white")
-    .attr("stroke", "#222")
-    .attr("stroke-width", 1);
+    .attr("r", 4)
+    .attr("fill", "white");
 
-
-
-
-
-
-
-
-
-
+// Body
+judgeGroups
+    .append("path")
+    .attr("d", "M13,12 L5,22 L20,22 Z")
+    .attr("fill", "white");
 
     });
 
 
     // Balken
     rows
-    .append("rect")
-    .attr("x", barStartX)
-    .attr("y", isMobile ? -14 : -14)
-    .attr("height", isMobile ? 34 : 26)
-    .attr("width", d => barScale(d.number_decisions))
-    .attr("fill", "#cccccc");
+        .append("rect")
+        .attr("x", 270)
+        .attr("y", -14)
+        .attr("height", 26)
+        .attr(
+            "width",
+            d => barScale(d.number_decisions)
+        )
+        .attr("fill", "#cccccc");
 
 
     // Anzahl Urteile
-    // Anzahl Urteile
-rows
-    .append("text")
-    .attr("x", barStartX + 5)
-    .attr("y", isMobile ? 11 : 5)
-    .attr("class", "number-label")
-    .style("font-size", isMobile ? "18px" : "13px")
-    .text(d => d.number_decisions);
+    rows
+        .append("text")
+        .attr(
+            "x", 275
+        )
+        .attr("y", 5)
+        .attr("class", "number-label")
+        .text(
+            d => d.number_decisions
+        );
 
 }
 
