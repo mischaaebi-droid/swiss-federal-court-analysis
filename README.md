@@ -1,3 +1,5 @@
+website: https://mischaaebi-droid.github.io/swiss-federal-court-analysis/
+
 # Project Goal
 The goal of this project is to investigate whether the political party affiliation of judges at the Swiss Federal Supreme Court influences their decisions. It also examines whether some judges are stricter or more lenient than others and whether judicial behavior changes over time — for example, whether right-leaning judges have become more restrictive.
 
